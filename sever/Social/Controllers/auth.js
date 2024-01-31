@@ -54,7 +54,7 @@ const register=(req,res)=>{
             if (b_err) { throw b_err }
             const q = `INSERT INTO users(Email,Password,Name,profileImage) VALUES (?,?,?,?)`
 
-            Mysql_Connect.query(q, [email, hash, name,'profileImg'], (err, result) => {
+            Mysql_Connect.query(q, [email, hash, name,'profileImage.png'], (err, result) => {
                 if (err) { throw err }
                 const token = jwt.sign({ id: result.insertId }, "mysecretjsontoken")
                 return res.status(200).json({ token: token })
